@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const express = require('express')
 const favicon = require('serve-favicon')
 const hbs = require('hbs')
+const colors = require('colors')
 const mongoose = require('mongoose')
 const logger = require('morgan')
 const path = require('path')
@@ -15,10 +16,12 @@ mongoose
 		useUnifiedTopology: true,
 	})
 	.then(x => {
-		console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+		console.log(
+			`Connected to Mongo! Database name: "${x.connections[0].name}"`.cyan.underline
+		)
 	})
 	.catch(err => {
-		console.error('Error connecting to mongo', err)
+		console.error('Error connecting to mongo', err.red)
 	})
 
 const app_name = require('./package.json').name
@@ -48,7 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator'
+app.locals.title = 'SrPago Test Movie API'
 
 const index = require('./routes/index')
 app.use('/', index)
