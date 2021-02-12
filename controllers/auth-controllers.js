@@ -53,3 +53,22 @@ exports.registerUser = asyncHandler(async (req, res) => {
 		res.status(400).json({ message: `${error}`.red })
 	}
 })
+
+// @desc    Get user profile
+// @route   GET /api/auth/profile
+// @access  Private
+
+exports.getUserProfile = asyncHandler(async (req, res) => {
+	try {
+		const user = await User.findById(req.user._id)
+
+		if (user) {
+			res.json({
+				_id: user._id,
+				username: user.username,
+			})
+		}
+	} catch (error) {
+		res.status(400).json({ message: 'Not authorized to enter!!' })
+	}
+})

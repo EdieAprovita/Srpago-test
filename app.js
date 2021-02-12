@@ -57,4 +57,13 @@ app.locals.title = 'SrPago Test Movie API'
 const index = require('./routes/index')
 app.use('/', index)
 
+const auth = require('./routes/auth-routes')
+app.use('/api', auth)
+
+const movie = require('./routes/movies-routes')
+app.use('/api/movies', movie)
+
+const order = require('./routes/order-routes')
+app.use('/api/order', order)
+
 module.exports = app

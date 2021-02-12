@@ -14,6 +14,13 @@ const userSchema = new Schema(
 			type: String,
 			required: [true, 'Please write a password!'],
 		},
+
+		movieOrders: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Order',
+			},
+		],
 	},
 	{
 		timestamps: true,
