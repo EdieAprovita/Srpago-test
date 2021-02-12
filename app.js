@@ -11,9 +11,10 @@ const logger = require('morgan')
 const path = require('path')
 
 mongoose
-	.connect('mongodb://localhost/srpago-test', {
+	.connect(process.env.DB, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
+		useCreateIndex: true,
 	})
 	.then(x => {
 		console.log(
